@@ -3,30 +3,42 @@ package ma.youcode.clinic.Models;
 import java.time.LocalDateTime;
 
 public class Consultation {
+    private int id;
+    
+    
     private String Vital;
     private Status statue;
     private String Observation;
     private LocalDateTime Time;
     private int PatientId;
     private int DoctorId;
-
-    public enum Status {
-    WAITING,
-    IN__PROGRESS,
-    CLOSED
-    }
-
     
-    public Consultation(String vital, Status statue, String observation, LocalDateTime time, int patientId,
-            int doctorId) {
-        Vital = vital;
-        this.statue = statue;
-        Observation = observation;
-        Time = time;
-        PatientId = patientId;
-        DoctorId = doctorId;
+    public enum Status {
+        WAITING,
+        IN__PROGRESS,
+        CLOSED
+    }
+    
+    
+    public Consultation(int id, String vital, Status statue, String observation, LocalDateTime time, int patientId,
+        int doctorId) {
+            this.id = id;
+            Vital = vital;
+            this.statue = statue;
+            Observation = observation;
+            Time = time;
+            PatientId = patientId;
+            DoctorId = doctorId;
+        }
+        
+    public int getId() {
+        return id;
     }
 
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getVital() {
         return Vital;
