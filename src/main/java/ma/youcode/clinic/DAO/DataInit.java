@@ -3,9 +3,10 @@ package ma.youcode.clinic.DAO;
 import java.sql.Connection;
 import java.sql.Statement;
 
+
 public class DataInit {
     public static void init(){
-        try(Connection conn = DBconnection.GetConnection();
+        try(Connection conn = DBconnection.getInstance().getConnection();
          Statement stmt = conn.createStatement())
          {
             stmt.execute("CREATE TABLE IF NOT EXISTS users ("
@@ -18,6 +19,7 @@ public class DataInit {
             stmt.execute("CREATE TABLE IF NOT EXISTS patients ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY, "
                     + "name VARCHAR(100), "
+                    + "birth_date DATE"
                     + "number VARCHAR(20))");
 
             stmt.execute("CREATE TABLE IF NOT EXISTS consultations ("
