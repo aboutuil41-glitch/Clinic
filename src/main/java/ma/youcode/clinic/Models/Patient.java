@@ -6,13 +6,13 @@ public class Patient {
 
     private String Name;
     private LocalDate birthDate;
-    private String SSNumber;
+    private String number;
 
     
-    public Patient(String name, LocalDate birthDate, String sSNumber) {
+    public Patient(String name, LocalDate birthDate, String number) {
         Name = name;
         this.birthDate = birthDate;
-        SSNumber = sSNumber;
+        this.number = number;
     }
 
 
@@ -36,14 +36,12 @@ public class Patient {
     }
 
 
-    public String getSSNumber() {
-        return SSNumber;
+    public String getNumber() {
+        return number;
     }
 
 
-    public void setSSNumber(String sSNumber) {
-        SSNumber = sSNumber;
-    }
-    
-    
+    public void setNumber(String number) {
+        this.number = number;
+    }    
 }
