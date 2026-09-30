@@ -25,7 +25,7 @@ public class UserDao extends AbstractDao<User> {
 
     @Override 
     public Optional<User> findById(int id){
-        String prmt = "SELECT * FROM user WHERE id = ?";
+        String prmt = "SELECT * FROM users WHERE id = ?";
         try (PreparedStatement stmt = getConnection().prepareStatement(prmt)){
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
@@ -40,7 +40,7 @@ public class UserDao extends AbstractDao<User> {
 
 
     public Optional<User> findByEmail(String email){
-        String prmt = "SELECT * FROM user WHERE id = ?";
+        String prmt = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement stmt = getConnection().prepareStatement(prmt)){
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
@@ -55,7 +55,7 @@ public class UserDao extends AbstractDao<User> {
 
     @Override
     public void delete(int id){
-        String prmt = "DELETE FROM user WHERE id = ?";
+        String prmt = "DELETE FROM users WHERE id = ?";
         try (PreparedStatement stmt = getConnection().prepareStatement(prmt)){
             stmt.setInt(1, id);
             stmt.executeUpdate();

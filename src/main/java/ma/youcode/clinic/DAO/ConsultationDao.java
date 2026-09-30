@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import ma.youcode.clinic.Models.Consultation;
@@ -36,7 +38,7 @@ public class ConsultationDao extends AbstractDao<Consultation> {
         try (PreparedStatement stmt = getConnection().prepareStatement(prmt)){
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
             return Optional.of(new Consultation(
                 rs.getInt("id"),
                 rs.getString("reason"),
@@ -54,6 +56,32 @@ public class ConsultationDao extends AbstractDao<Consultation> {
             System.out.println(e.getMessage());
         }
         return Optional.empty();
+    }
+
+
+    public List<Consultation> getAll(){
+        List<Consultation> result = new ArrayList<>();
+        String prmt = "SELECT * FROM consultations";
+        try (PreparedStatement stmt = getConnection().prepareStatement(prmt)){
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+            result.add(new Consultation(
+                rs.getInt("id"),
+                rs.getString("reason"),
+                Consultation.Status.valueOf(rs.getString("status")),
+                rs.getString("observation"),
+                rs.getString("diagnosis"),
+                rs.getString("treatment"),
+                rs.getDouble("cost"),
+                rs.getTimestamp("date").toLocalDateTime(),
+                rs.getInt("patient_id"),
+                rs.getInt("doctor_id")
+            ));            
+        }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 
         @Override
