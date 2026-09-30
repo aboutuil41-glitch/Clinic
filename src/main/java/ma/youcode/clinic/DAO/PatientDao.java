@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Optional;
 
 import ma.youcode.clinic.Models.Patient;
@@ -12,14 +13,20 @@ public class PatientDao extends AbstractDao<Patient>{
 
     @Override 
     public void save(Patient patient){
-        String prmt = "INSERT INTO `patients`(`name`, `birth_date`, `number`) VALUES ('?','?','?')";
+        String prmt = "INSERT INTO `patients`(`name`, `firstname`, `birth_date`, `number`, `blood_pressure`, `heart_rate`, `temperature`, `respiratory_rate`, `arrival_time`) VALUES (?,?,?,?,?,?,?,?,?)";
         try(PreparedStatement stmt = getConnection().prepareStatement(prmt)){
             stmt.setString(1, patient.getName());
-            stmt.setDate(2, Date.valueOf(patient.getBirthDate()));
-            stmt.setString(3, patient.getNumber());
+            stmt.setString(2, patient.getFirstname());
+            stmt.setDate(3, Date.valueOf(patient.getBirthDate()));
+            stmt.setString(4, patient.getNumber());
+            stmt.setString(5, patient.getBloodPressure());
+            stmt.setInt(6, patient.getHeartRate());
+            stmt.setDouble(7, patient.getTemperature());
+            stmt.setInt(8, patient.getRespiratoryRate());
+            stmt.setTimestamp(9, Timestamp.valueOf(patient.getArrivalTime()));
             stmt.executeUpdate();
         }catch(SQLException e){
-            System.out.println("Fail");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -30,7 +37,18 @@ public class PatientDao extends AbstractDao<Patient>{
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return Optional.of(new Patient(rs.getInt("id"), rs.getString("name"), rs.getDate("birth_date").toLocalDate(), rs.getString("number")));
+                return Optional.of(new Patient(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("firstname"),
+                    rs.getDate("birth_date").toLocalDate(),
+                    rs.getString("number"),
+                    rs.getString("blood_pressure"),
+                    rs.getInt("heart_rate"),
+                    rs.getDouble("temperature"),
+                    rs.getInt("respiratory_rate"),
+                    rs.getTimestamp("arrival_time").toLocalDateTime()
+                ));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

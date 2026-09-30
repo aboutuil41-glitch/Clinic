@@ -3,32 +3,36 @@ package ma.youcode.clinic.DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class DBconnection {
 
     private static final Dotenv dotenv = Dotenv.load();
+    private static final HikariDataSource dataSource;
 
-    private static final String URL = dotenv.get("DB_URL");
-    private static final String USER = dotenv.get("DB_USER");
-    private static final String PASSWORD = dotenv.get("DB_PASSWORD");
+    // private static final String URL = dotenv.get("DB_URL");
+    // private static final String USER = dotenv.get("DB_USER");
+    // private static final String PASSWORD = dotenv.get("DB_PASSWORD");
 
-    private static DBconnection instance;
-    private Connection connection;
-
-    private DBconnection() throws SQLException {
-        connection = DriverManager.getConnection(URL, USER, PASSWORD);
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(dotenv.get("DB_URL"));
+        config.setUsername(dotenv.get("DB_USER"));
+        config.setPassword(dotenv.get("DB_PASSWORD"));
+        config.setMaximumPoolSize(10);
+        dataSource = new HikariDataSource(config);
     }
 
-    public static DBconnection getInstance() throws SQLException {
-        if (instance == null) {
-            instance = new DBconnection();
-        }
+    // private static DBconnection instance;
+    // private Connection connection;
+    private DBconnection() {}
 
-        return instance;
+    public static Connection getConnection() throws SQLException {
+        return dataSource.getConnection();
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
 }

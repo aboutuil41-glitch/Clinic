@@ -5,6 +5,6 @@ import java.sql.SQLException;
 
 public abstract class AbstractDao<T> implements DAO<T> {
     protected Connection getConnection() throws SQLException{
-        return DBconnection.getInstance().getConnection();
+        return DBconnection.getConnection();
     }
 }
