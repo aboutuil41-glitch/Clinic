@@ -2,12 +2,14 @@ package ma.youcode.clinic.Models;
 
 public class User {
 
+    private int id;
     private String name;
     private String Email;
     private String Password;
     private UserRole Role;
 
-    public User(String name, String email, String password, UserRole role) {
+    public User(int id, String name, String email, String password, UserRole role) {
+        this.id = id;
         this.name = name;
         Email = email;
         Password = password;
@@ -20,7 +22,14 @@ public class User {
     Nurse
     }
 
+    public int getId() {
+        return id;
+    }
 
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     
     public String getName() {
