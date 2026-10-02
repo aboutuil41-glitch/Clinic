@@ -15,12 +15,20 @@ public class DBconnection {
     private static final HikariDataSource dataSource;
 
     static {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(dotenv.get("DB_URL"));
-        config.setUsername(dotenv.get("DB_USER"));
-        config.setPassword(dotenv.get("DB_PASSWORD"));
-        config.setMaximumPoolSize(10);
-        dataSource = new HikariDataSource(config);
+    HikariConfig config = new HikariConfig();
+
+    config.setJdbcUrl(dotenv.get("DB_URL"));
+    config.setUsername(dotenv.get("DB_USER"));
+    config.setPassword(dotenv.get("DB_PASSWORD"));
+    config.setMaximumPoolSize(10);
+
+    try {
+        System.out.println("MYSQL DRIVER: " + Class.forName("com.mysql.cj.jdbc.Driver"));
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+
+    dataSource = new HikariDataSource(config);
     }
 
 
