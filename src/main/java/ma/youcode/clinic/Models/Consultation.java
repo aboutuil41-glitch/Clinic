@@ -16,7 +16,7 @@ public class Consultation {
     private int DoctorId;
 
     public enum Status {
-        CLOSED
+        TERMINEE
     }
 
     public Consultation(int id, String reason, Status statue, String observation, String diagnosis,
