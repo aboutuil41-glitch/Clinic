@@ -14,10 +14,6 @@ public class DBconnection {
     private static final Dotenv dotenv = Dotenv.load();
     private static final HikariDataSource dataSource;
 
-    // private static final String URL = dotenv.get("DB_URL");
-    // private static final String USER = dotenv.get("DB_USER");
-    // private static final String PASSWORD = dotenv.get("DB_PASSWORD");
-
     static {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(dotenv.get("DB_URL"));
@@ -27,8 +23,7 @@ public class DBconnection {
         dataSource = new HikariDataSource(config);
     }
 
-    // private static DBconnection instance;
-    // private Connection connection;
+
     private DBconnection() {}
 
     public static Connection getConnection() throws SQLException {
