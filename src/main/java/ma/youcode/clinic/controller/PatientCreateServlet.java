@@ -56,6 +56,6 @@ public class PatientCreateServlet extends HttpServlet{
                 LocalDateTime.now()
         );
         patientService.save(patient);
-        resp.sendRedirect(req.getContextPath() + "/nurse");
+        resp.sendRedirect(req.getContextPath() + "/user/Nurse");
     }
 }
