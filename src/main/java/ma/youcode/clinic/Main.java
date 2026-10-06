@@ -1,65 +1,32 @@
 package ma.youcode.clinic;
 
-import ma.youcode.clinic.DAO.ConsultationDao;
-import ma.youcode.clinic.DAO.PatientDao;
-import ma.youcode.clinic.Models.Consultation;
-import ma.youcode.clinic.Models.Patient;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import ma.youcode.clinic.DAO.DataInit;
+import ma.youcode.clinic.DAO.UserDao;
+import ma.youcode.clinic.Models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        PatientDao patientDao = new PatientDao();
+        DataInit.init();
 
-        // Patient patient = new Patient(
-        //         "SuperNoob",
-        //         LocalDate.of(2006, 2, 17),
-        //         "0713399651"
-        // );
+        // String password = BCrypt.hashpw("1234", BCrypt.gensalt(12));
 
-        // patientDao.save(patient);
+        // userDao.save(new User(0, "Ahmed Benali", "ahmed@clinic.com",
+        //         password, User.UserRole.Doctor));
 
-        // patientDao.findById(2).ifPresent(patient -> {
-        //     System.out.println(patient.getId());
-        //     System.out.println(patient.getName());
-        //     System.out.println(patient.getBirthDate());
-        //     System.out.println(patient.getNumber());
-        // });
+        // userDao.save(new User(0, "Sara Amrani", "sara@clinic.com",
+        //         password, User.UserRole.Doctor));
 
+        // userDao.save(new User(0, "Youssef Alaoui", "youssef@clinic.com",
+        //         password, User.UserRole.Doctor));
 
-        ConsultationDao consultationDao = new ConsultationDao();
+        // userDao.save(new User(0, "Nadia Mansouri", "nadia@clinic.com",
+        //         password, User.UserRole.Nurse));
 
-        patientDao.delete(1);
-
-        // Consultation consultation = new Consultation(
-        //         1,
-        //         "Blood pressure: normal",
-        //         Consultation.Status.WAITING,
-        //         "Patient feels fine",
-        //         LocalDateTime.now(),
-        //         1,
-        //         1
-        // );
-
-        // consultationDao.save(consultation);
-
-        // System.out.println(
-        //         consultationDao.findById(1)
-        // );
-
-    // consultationDao.findById(1).ifPresent(consultation -> {
-    // System.out.println(consultation.getId());
-    // System.out.println(consultation.getVital());
-    // System.out.println(consultation.getStatue());
-    // System.out.println(consultation.getObservation());
-    // System.out.println(consultation.getTime());
-    // System.out.println(consultation.getPatientId());
-    // System.out.println(consultation.getDoctorId());
-    // });
-
+        // userDao.save(new User(0, "Imane Berrada", "imane@clinic.com",
+        //         password, User.UserRole.Nurse));
 
     }
 }
