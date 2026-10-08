@@ -23,10 +23,10 @@ import ma.youcode.clinic.services.PatientService;
 public class DoctorServlet extends HttpServlet {
 
     private PatientService patientService =
-            new PatientService(new PatientJDBC());
+            new PatientService();
 
     private ConsultationService consultationService =
-            new ConsultationService(new ConsultationJDBC());
+            new ConsultationService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -40,6 +40,8 @@ public class DoctorServlet extends HttpServlet {
         .toList();
 
         req.setAttribute("patients", patients);
+
+        
 
         String patientId = req.getParameter("patientId");
 

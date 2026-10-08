@@ -35,14 +35,12 @@ public class RoleFilter implements Filter {
 
         if (path.startsWith("/user/doctor") &&
             user.getRole() != User.UserRole.Doctor) {
-
             res.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
 
         if (path.startsWith("/user/nurse") &&
             user.getRole() != User.UserRole.Nurse) {
-
             res.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }

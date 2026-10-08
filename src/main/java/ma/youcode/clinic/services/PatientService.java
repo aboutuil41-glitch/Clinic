@@ -6,15 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 import ma.youcode.clinic.DAO.PatientDao;
+import ma.youcode.clinic.DAO.PatientJDBC;
 import ma.youcode.clinic.Models.Patient;
 
 public class PatientService {
 
-    private final PatientDao patientDao;
+    private final PatientDao patientDao = new PatientJDBC();
 
-    public PatientService(PatientDao patientDao) {
-        this.patientDao = patientDao;
-    }
+
 
     public void save(Patient patient) {
         patientDao.save(patient);

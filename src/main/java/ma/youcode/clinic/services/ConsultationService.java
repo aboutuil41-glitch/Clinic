@@ -5,15 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import ma.youcode.clinic.DAO.ConsultationDao;
+import ma.youcode.clinic.DAO.ConsultationJDBC;
 import ma.youcode.clinic.Models.Consultation;
 
 public class ConsultationService {
 
-    private final ConsultationDao consultationDao;
+    private final ConsultationDao consultationDao = new ConsultationJDBC();
 
-    public ConsultationService(ConsultationDao consultationDao) {
-        this.consultationDao = consultationDao;
-    }
 
     public void save(Consultation consultation) {
         consultationDao.save(consultation);

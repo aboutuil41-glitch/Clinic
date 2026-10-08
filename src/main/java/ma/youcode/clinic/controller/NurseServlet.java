@@ -19,7 +19,7 @@ import java.util.List;
 @WebServlet(name = "NurseServlet", urlPatterns = "/user/Nurse")
 public class NurseServlet extends HttpServlet {
 
-    private PatientService patientService = new PatientService(new PatientJDBC());
+    private PatientService patientService = new PatientService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

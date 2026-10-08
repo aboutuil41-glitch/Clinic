@@ -21,7 +21,7 @@ import ma.youcode.clinic.services.PatientService;
  * PatientCreateServlet
  */
 public class PatientCreateServlet extends HttpServlet{
-    private PatientService patientService = new PatientService(new PatientJDBC());
+    private PatientService patientService = new PatientService();
 
     @Override 
     protected void doGet(HttpServletRequest req , HttpServletResponse resp) 

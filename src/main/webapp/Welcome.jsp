@@ -51,6 +51,6 @@
 <a href="${pageContext.request.contextPath}/nurse/add">
     Create Patient
 </a>
-
+<a href="${pageContext.request.contextPath}/logout">Logout</a>
 </body>
 </html>

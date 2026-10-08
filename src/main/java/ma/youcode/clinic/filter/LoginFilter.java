@@ -32,7 +32,7 @@ public class LoginFilter implements Filter {
 
 
         boolean isLoggedIn = session != null && session.getAttribute("user") != null;
-        boolean isPublic = path.equals("/login") || path.equals("/nurse.jsp");
+        boolean isPublic = path.equals("/login");
 
         System.out.println("URI: " + uri);
         System.out.println("PATH: " + path);
@@ -45,7 +45,6 @@ public class LoginFilter implements Filter {
         } else {
             System.out.println("oh");
             res.sendRedirect(context + "/login");
-
         }
     }
 }
